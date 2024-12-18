@@ -30,35 +30,41 @@
     @apply flex gap-2 bg-white rounded-full w-full items-center;
   }
   .search-input {
-    @apply flex-1 font-medium placeholder:font-light w-full h-auto outline-none bg-white sm:text-[22px] text-[20px] max-w-2xl sm:min-h-[70px] min-h-[55px] px-2 pl-6 rounded-full;
+    @apply flex-1 font-medium placeholder:font-light w-full h-auto outline-none bg-white sm:text-[22px] text-[20px] max-w-2xl sm:min-h-[70px] min-h-[55px] px-2 pl-6 rounded-full focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition-all duration-200;
+    background-color: white !important;
   }
+  .search-input:-webkit-autofill {
+    background-color: white !important;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
   .search-btn {
     @apply size-[50px] sm:w-[160px] w-[100px] rounded-full bg-black flex justify-center items-center sm:text-[22px] text-[20px] sm:min-h-[70px] min-h-[55px] font-normal  !important;
   }
   .search-icon {
-    @apply text-gray-400 mr-8;
+    @apply flex items-center justify-center text-gray-400 text-[18px] sm:text-[20px] mr-8;
   }
   .search-reset-btn {
     @apply size-[50px] w-[70px]  rounded-full bg-black flex justify-center items-center text-[22px] sm:min-h-[70px] min-h-[60px] font-normal !important;
   }
 
   /* Flint Section */
-  .skills-section {
+  .features-section {
     @apply mx-auto max-w-screen-xl px-4 py-12 sm:px-6 md:py-16 lg:px-8;
   }
-  .skills-grid {
+  .features-grid {
     @apply grid grid-cols-1 gap-4 sm:grid-cols-3 sm:divide-x sm:divide-gray-100;
   }
-  .skills-grid-item {
+  .features-grid-item {
     @apply flex flex-col px-4 py-8 text-center;
   }
-  .skills-percentage {
+  .features-percentage {
     @apply text-4xl font-semibold text-black md:text-5xl;
   }
-  .skills-text-bold {
+  .features-text-bold {
     @apply text-xl font-medium mt-4;
   }
-  .skills-text-light {
+  .features-text-light {
     @apply mt-2 text-gray-600 sm:text-lg text-base;
   }
 }

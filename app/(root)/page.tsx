@@ -1,10 +1,19 @@
+import HeroSection from "@/components/HeroSection";
+import SkillsSection from "@/components/SkillsSection";
 import { Button } from "@/components/ui/button";
 import React from "react";
 
-const Home = () => {
+const Home = async ({
+  searchParams,
+}: {
+  searchParams: Promise<{ query?: string }>;
+}) => {
+  const query = (await searchParams).query;
+
   return (
-    <div className="theme font-poppins text-5xl font-semibold">
-      <Button>Name</Button>Home<Button>Temp</Button>
+    <div className="sm:p-3 md:p-6 p-1">
+      <HeroSection query={query} />
+      <SkillsSection />
     </div>
   );
 };

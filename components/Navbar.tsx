@@ -2,15 +2,18 @@ import { auth, signIn, signOut } from "@/auth";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 const Navbar = async () => {
   const session = await auth();
   return (
-    <header className="px-5 py-3 bg-white shadow-sm font-work-sans">
+    <header className="px-5 py-3 bg-white shadow-sm font-poppins">
       <nav className="flex justify-between items-center">
-        <Link href={"/"}>
+        <Link href={"/"} className="flex flex-row justify-center items-center ">
           <Image src={"/logo.png"} alt={"Logo"} width={50} height={50} />
+          <span className="font-medium text-xl">FLINT</span>
         </Link>
+
         <div className="flex items-center gap-5 text-black">
           {session && session?.user ? (
             <>
@@ -26,20 +29,19 @@ const Navbar = async () => {
               </form>
 
               <Link href={`/user/${session?.id}`}>
-                <span>{session?.user?.name}</span>
+                <Avatar className="size-10">
+                  <AvatarImage
+                    src={session?.user?.image || ""}
+                    alt={session?.user?.name || ""}
+                  />
+                  <AvatarFallback>AV</AvatarFallback>
+                </Avatar>
               </Link>
             </>
           ) : (
-            <form
-              className=""
-              action={async () => {
-                "use server";
-                await signIn("github");
-              }}>
-              <button className=" " type="submit">
-                Signin with GitHub
-              </button>
-            </form>
+            <Link href={"/login"} className=" " type="submit">
+              Login
+            </Link>
           )}
         </div>
       </nav>

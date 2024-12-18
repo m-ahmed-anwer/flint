@@ -14,4 +14,6 @@
   .temp {
     @apply flex justify-between items-center;
   }
+
+  
 }

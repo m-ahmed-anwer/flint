@@ -1,5 +1,5 @@
 import HeroSection from "@/components/HeroSection";
-import SkillsSection from "@/components/SkillsSection";
+import FlintSection from "@/components/FlintSection";
 import { Button } from "@/components/ui/button";
 import React from "react";
 
@@ -13,7 +13,7 @@ const Home = async ({
   return (
     <div className="sm:p-3 md:p-6 p-1">
       <HeroSection query={query} />
-      <SkillsSection />
+      <FlintSection />
     </div>
   );
 };

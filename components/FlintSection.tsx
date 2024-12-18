@@ -1,6 +1,6 @@
 import React from "react";
 
-const SkillsSection = () => {
+const FlintSection = () => {
   return (
     <section className="skills-section">
       <div className="skills-item">
@@ -30,4 +30,4 @@ const SkillsSection = () => {
   );
 };
 
-export default SkillsSection;
+export default FlintSection;

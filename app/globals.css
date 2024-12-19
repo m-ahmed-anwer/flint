@@ -91,7 +91,9 @@
     @apply transition-transform duration-300 ease-in-out;
   }
   .component-icon:hover {
-    @apply transform scale-105;
+    @apply transform;
+    --tw-scale-y: 1.05;
+    --tw-scale-x: 1.02;
   }
   .component-text-bold {
     @apply sm:text-3xl text-2xl font-semibold cursor-default;
@@ -108,7 +110,6 @@
       rgba(234, 234, 235, 0.8) 100%
     );
   }
-
   .vertical-line-bottom {
     @apply w-[2px] h-full ml-3 max-md:hidden;
     background: linear-gradient(
@@ -117,7 +118,6 @@
       rgba(241, 241, 250, 0.3) 100%
     );
   }
-
   .vertical-line-hidden {
     @apply w-[2px] h-full ml-3 max-md:hidden;
   }
@@ -125,6 +125,7 @@
   /* Bold text hover on group hover */
   .component-grid-right:hover .component-text-bold {
     background: linear-gradient(90deg, #2f286f, #b6d3ff);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }

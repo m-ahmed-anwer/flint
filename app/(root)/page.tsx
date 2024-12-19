@@ -1,7 +1,8 @@
-import HeroSection from "@/components/HeroSection";
-import FlintSection from "@/components/FlintSection";
+import HeroSection from "@/components/home/HeroSection";
+import FlintSection from "@/components/home/FlintSection";
 import React from "react";
-import RecentJobSection from "@/components/RecentJobSection";
+import RecentJobSection from "@/components/home/RecentJobSection";
+import ComponentSection from "@/components/home/ComponentSection";
 
 const Home = async ({
   searchParams,
@@ -15,6 +16,7 @@ const Home = async ({
       <HeroSection query={query} />
       <FlintSection />
       <RecentJobSection />
+      <ComponentSection />
     </div>
   );
 };

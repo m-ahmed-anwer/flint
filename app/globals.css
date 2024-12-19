@@ -67,4 +67,35 @@
   .features-text-light {
     @apply mt-2 text-gray-600 sm:text-lg text-base;
   }
+
+  /* Component Section */
+  .component-section {
+    @apply mx-auto max-w-screen-xl px-4 py-12 sm:px-6 md:py-20 lg:px-10;
+  }
+  .component-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-12 items-stretch;
+  }
+
+  /* Left Section */
+  .component-grid-left {
+    @apply flex justify-center items-center bg-gray-100 rounded-lg h-[400px] sm:h-[500px] w-full;
+    @apply transition-all duration-500 ease-in-out hover:scale-105;
+  }
+  .inside-card {
+    @apply text-center text-gray-700 font-medium text-lg;
+  }
+
+  /* Right Section */
+  .component-grid-right {
+    @apply flex flex-col justify-center text-left space-y-6 h-[400px] sm:h-[500px] sm:ml-14 ml-6;
+  }
+  .component-icon {
+    @apply text-black mb-6;
+  }
+  .component-text-bold {
+    @apply text-2xl font-semibold hover:text-blue-600;
+  }
+  .component-text-light {
+    @apply text-gray-600 sm:text-lg text-base;
+  }
 }

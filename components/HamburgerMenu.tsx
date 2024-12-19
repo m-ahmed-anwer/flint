@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-import { FaRegUser } from "react-icons/fa";
 import { RxHamburgerMenu } from "react-icons/rx";
 
 const HamburgerMenu = () => {
@@ -30,9 +29,8 @@ const HamburgerMenu = () => {
               <Link href={"/"}>Post a Job</Link>
             </li>
             <li>
-              <Link href={"/"} className="flex-center gap-2">
-                <span>Signin</span>
-                <FaRegUser />
+              <Link href={"/"} className="text-green-500">
+                Login
               </Link>
             </li>
           </ul>

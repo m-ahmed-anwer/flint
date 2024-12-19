@@ -1,11 +1,10 @@
-import { auth, signOut } from "@/auth";
 import Image from "next/image";
 import Link from "next/link";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import HamburgerMenu from "./HamburgerMenu";
+import AvtarDropDownMenu from "./AvtarDropDownMenu";
 
 const Navbar = async () => {
-  const session = await auth();
+  const user = true;
 
   return (
     <header className="header-container">
@@ -41,30 +40,8 @@ const Navbar = async () => {
         </div>
 
         <div className="flex items-center gap-5 text-black">
-          {session && session?.user ? (
-            <>
-              <Link href={"/startup/create"}>
-                <span>Create</span>
-              </Link>
-              <form
-                action={async () => {
-                  "use server";
-                  await signOut({ redirectTo: "/" });
-                }}
-              >
-                <button type="submit">Logout</button>
-              </form>
-
-              <Link href={`/user/${session?.user?.id}`}>
-                <Avatar className="size-10">
-                  <AvatarImage
-                    src={session?.user?.image || ""}
-                    alt={session?.user?.name || ""}
-                  />
-                  <AvatarFallback>AV</AvatarFallback>
-                </Avatar>
-              </Link>
-            </>
+          {user ? (
+            <AvtarDropDownMenu />
           ) : (
             <div className="flex gap-5">
               <Link

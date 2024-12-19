@@ -15,5 +15,38 @@
     @apply flex justify-between items-center;
   }
 
-  
+  .flex-center {
+    @apply flex items-center;
+  }
+
+  .header-container {
+    @apply px-5 py-3 bg-white shadow-lg font-poppins rounded-full m-2;
+  }
+
+  .button {
+    @apply py-1 px-3 rounded-full cursor-pointer hover:scale-110 duration-200;
+  }
+  .navbar-li-tag {
+    @apply relative overflow-hidden;
+  }
+
+  .navbar-underline {
+    @apply absolute left-0 bottom-0 h-[3px] w-full scale-x-0 origin-left bg-blue-300 transition-transform duration-300 ease-out;
+  }
+
+  .navbar-link-tag {
+    @apply relative p-3 z-10 text-black duration-300 ease-in-out;
+  }
+
+  .hamburger-button-span {
+    @apply block w-6 h-[2px] bg-black mb-1;
+  }
+
+  .hamburger-menu-ul {
+    @apply absolute right-0 mt-7 px-6 py-3 bg-white shadow-lg rounded-lg flex flex-col gap-3;
+  }
+
+  .hamburger-menu-ul li {
+    @apply text-base font-semibold hover:scale-105 duration-200;
+  }
 }

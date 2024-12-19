@@ -24,18 +24,18 @@
   }
 
   .button {
-    @apply py-1 px-3 rounded-full cursor-pointer hover:scale-110 duration-200;
+    @apply py-1 px-3 rounded-full cursor-pointer hover:scale-110 duration-200 font-thin text-sm;
   }
   .navbar-li-tag {
     @apply relative overflow-hidden;
   }
 
   .navbar-underline {
-    @apply absolute left-0 bottom-0 h-[3px] w-full scale-x-0 origin-left bg-blue-300 transition-transform duration-300 ease-out;
+    @apply absolute left-0 bottom-0 h-[3px] w-full scale-x-0 origin-left bg-blue-300 transition-transform duration-300 ease-out rounded-full;
   }
 
   .navbar-link-tag {
-    @apply relative p-3 z-10 text-black duration-300 ease-in-out;
+    @apply relative p-3 z-10 text-black duration-300 ease-in-out text-sm;
   }
 
   .hamburger-button-span {
@@ -43,10 +43,10 @@
   }
 
   .hamburger-menu-ul {
-    @apply absolute right-0 mt-7 px-6 py-3 bg-white shadow-lg rounded-lg flex flex-col gap-3;
+    @apply absolute right-0 mt-7 px-10 py-4 bg-white shadow-lg rounded-lg flex flex-col gap-6;
   }
 
   .hamburger-menu-ul li {
-    @apply text-base font-semibold hover:scale-105 duration-200;
+    @apply text-base font-light;
   }
 }

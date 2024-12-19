@@ -18,7 +18,7 @@ const Navbar = async () => {
         </div>
 
         <div>
-          <ul className="hidden lg:flex gap-5">
+          <ul className="hidden md:flex gap-5">
             <li className="navbar-li-tag group">
               <Link href={"/"} className="navbar-link-tag">
                 Find a Job
@@ -83,7 +83,7 @@ const Navbar = async () => {
               </Link>
             </div>
           )}
-          <div className="lg:hidden">
+          <div className="md:hidden">
             <HamburgerMenu />
           </div>
         </div>

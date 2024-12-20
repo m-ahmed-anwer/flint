@@ -10,12 +10,17 @@ const LottieComponent = ({
   width?: number;
   height?: number;
 }) => {
+  const handleError = () => {
+    console.log("Failed to fetch");
+  };
+
   return (
     <DotLottieReact
       src={url}
       loop
       autoplay
       style={{ width: `${width}px`, height: `${height}px` }}
+      onError={handleError}
     />
   );
 };

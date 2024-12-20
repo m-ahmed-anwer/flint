@@ -46,7 +46,7 @@ const SearchInput = ({
         defaultValue={query}
         name="query"
         placeholder={placeholder}
-        className="search-input"
+        className="search-input focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition-all duration-200"
       />
 
       <div className="search-icon">

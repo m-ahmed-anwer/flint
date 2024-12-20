@@ -1,7 +1,6 @@
 import React from "react";
 import { RxFileText } from "react-icons/rx";
 import { BsFiletypePdf } from "react-icons/bs";
-import { SlCloudUpload } from "react-icons/sl";
 import LottieComponent from "../LottieComponent";
 
 const FlintComponentSection = () => {
@@ -47,7 +46,7 @@ const FlintComponentSection = () => {
             Complete your <br />
             Profile
           </div>
-          <div className="component-text-light">
+          <div className="small-text-light">
             Complete your profile so that recruiters can see your skills and
             experience.
           </div>
@@ -94,7 +93,7 @@ const FlintComponentSection = () => {
             Directly Upload <br />
             Resume
           </div>
-          <div className="component-text-light">
+          <div className="small-text-light">
             You can upload your resume or CV, and recruiters will be able to
             review.
           </div>
@@ -140,7 +139,7 @@ const FlintComponentSection = () => {
             Directly Upload <br />
             Resume
           </div>
-          <div className="component-text-light">
+          <div className="small-text-light">
             You can upload your resume or CV, and recruiters will be able to
             review.
           </div>

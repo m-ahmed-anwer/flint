@@ -48,7 +48,7 @@ const JobCard = ({ job }: { job: JobType }) => {
           <h3 className="text-xl font-bold text-gray-900 mt-1 max-w-48 ">
             {title}
           </h3>
-          <Avatar className="size-12">
+          <Avatar className="size-12 bg-gray-100 p-1">
             <AvatarImage src={logo} alt={"comapny"} />
             <AvatarFallback> </AvatarFallback>
           </Avatar>

@@ -47,15 +47,13 @@ const Navbar = async () => {
               <Link
                 href={"/login"}
                 className="bg-white button border shadow-md hidden lg:block"
-                type="submit"
-              >
+                type="submit">
                 Login
               </Link>
               <Link
                 href={"/login"}
                 className="bg-black text-white button shadow-md"
-                type="submit"
-              >
+                type="submit">
                 Signup
               </Link>
             </div>

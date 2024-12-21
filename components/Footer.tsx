@@ -8,8 +8,8 @@ import { AiFillTwitterCircle } from "react-icons/ai";
 
 const Footer = () => {
   return (
-    <footer className=" py-6 px-5 font-poppins ">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-4 md:space-x-20">
+    <footer className=" py-10 px-5  ">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-4 md:space-x-20 max-md:ml-4">
         <div>
           <div className="flex items-center mb-4">
             <Image src={Logo} alt="TechStore Logo" className="h-10 w-14 mr-2" />
@@ -21,7 +21,7 @@ const Footer = () => {
           <p className=" text-gray-400 text-sm mb-2">flint@gmail.com</p>
         </div>
 
-        <div>
+        <div className="max-md:mt-3">
           <h4 className="font-semibold mb-3">Navigation</h4>
           <ul className="space-y-2 text-sm text-gray-400">
             <li>
@@ -36,8 +36,8 @@ const Footer = () => {
           </ul>
         </div>
 
-        <div>
-          <h4 className=" font-semibold mb-3">Support</h4>
+        <div className="max-md:mt-3">
+          <h4 className=" font-semibold mb-2">Support</h4>
           <ul className="space-y-2 text-sm text-gray-400">
             <li>
               <Link href="/">FAQ</Link>
@@ -51,12 +51,11 @@ const Footer = () => {
           </ul>
         </div>
 
-        <div>
+        <div className="max-md:mt-3">
           <h4 className=" font-semibold mb-4">Follow Us</h4>
           <ul
             className=" flex justify-start
-           items-center space-x-4 text-sm "
-          >
+           items-center space-x-4 text-sm ">
             <li className="hover:-translate-y-2 duration-500 ease-in-out">
               <Link href="/">
                 <AiFillTwitterCircle size={20} color="gray" />
@@ -79,7 +78,10 @@ const Footer = () => {
       <div className="border-t  mx-10 mt-10"></div>
 
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center mt-5 text-sm text-gray-400">
-        <p>© 2024 Flint. All rights reserved.</p>
+        <p>
+          © Copyright {new Date().getFullYear().toString()} Flint. All rights
+          reserved.
+        </p>
         <p>
           <Link href="/" className=" mr-2">
             Privacy Policy

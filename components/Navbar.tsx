@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import HamburgerMenu from "./HamburgerMenu";
-import AvtarDropDownMenu from "./AvtarDropDownMenu";
+import AvatarDropDownMenu from "./AvatarDropDownMenu";
 
 const Navbar = async () => {
-  const user = true;
+  const user = false;
 
   return (
     <header className="header-container">
@@ -41,12 +41,12 @@ const Navbar = async () => {
 
         <div className="flex items-center gap-5 text-black">
           {user ? (
-            <AvtarDropDownMenu />
+            <AvatarDropDownMenu />
           ) : (
             <div className="flex gap-5">
               <Link
                 href={"/login"}
-                className="bg-white button border shadow-md hidden lg:block"
+                className="bg-white button border shadow-md hidden md:block"
                 type="submit">
                 Login
               </Link>

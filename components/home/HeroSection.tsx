@@ -7,7 +7,7 @@ const HeroSection = ({ query }: { query?: string }) => {
       <h1 className="heading">
         Modernizing the Job <br /> Search Experience
       </h1>
-      <p className="sub-heading !max-w-2xl">
+      <p className="sub-heading !max-w-2xl mb-4">
         Search and find your dream job easier than ever, you can simply browse
         and find a job if you need it
       </p>

@@ -1,42 +1,41 @@
-"use client";
 import Link from "next/link";
-import { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 
 const HamburgerMenu = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
-
   return (
-    <div className="relative">
-      <div className="block lg:hidden focus:outline-none ">
-        <RxHamburgerMenu onClick={toggleMenu} size={20} />
-      </div>
-
-      {menuOpen && (
-        <div id="hamburger-menu">
-          <ul className="hamburger-menu-ul">
-            <li>
-              <Link href={"/"}>Find a Job</Link>
-            </li>
-            <li>
-              <Link href={"/"}>Companies</Link>
-            </li>
-            <li>
-              <Link href={"/"}>Post a Job</Link>
-            </li>
-            <li>
-              <Link href={"/"} className="text-green-500">
-                Login
-              </Link>
-            </li>
-          </ul>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <div className="block lg:hidden focus:outline-none hover:cursor-pointer">
+          <RxHamburgerMenu size={24} className="text-gray-800" />
         </div>
-      )}
-    </div>
+      </DropdownMenuTrigger>
+
+      {/* Dropdown Content */}
+      <DropdownMenuContent
+        className="w-40 bg-white shadow-md rounded-md p-2 mr-4 mt-2 md:hidden"
+        align="end">
+        <DropdownMenuItem>
+          <Link href="/">Find a Job</Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <Link href="/">Companies</Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <Link href="/">Post a Job</Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <Link href="/" className="text-green-500">
+            Login
+          </Link>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 };
 

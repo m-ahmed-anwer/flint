@@ -62,8 +62,17 @@ const JobCard = ({ job }: { job: JobType }) => {
             {level}
           </span>
           <span className="px-3 py-1 text-sm bg-gray-100 text-gray-600 rounded-full flex justify-center items-center gap-1">
-            <HiOutlineComputerDesktop />
-            {contract}
+            {contract === "On-site" ? (
+              <>
+                <HiOutlineBuildingOffice2 />
+                {contract}
+              </>
+            ) : (
+              <>
+                <HiOutlineComputerDesktop />
+                {contract}
+              </>
+            )}
           </span>
         </div>
       </div>

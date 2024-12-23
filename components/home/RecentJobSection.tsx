@@ -1,8 +1,6 @@
 "use client";
-import Form from "next/form";
+
 import React, { useState } from "react";
-import SearchInput from "../SearchInput";
-import { Button } from "../ui/button";
 import JobCard, { JobType } from "../JobCard";
 
 const RecentJobSection = () => {
@@ -17,9 +15,9 @@ const RecentJobSection = () => {
     "Other",
   ];
 
-  const [selectedTags, setSelectedTags] = useState([]);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
-  const toggleTag = (tag) => {
+  const toggleTag = (tag: any) => {
     if (selectedTags.includes(tag)) {
       setSelectedTags(selectedTags.filter((t) => t !== tag));
     } else {
@@ -126,8 +124,8 @@ const RecentJobSection = () => {
               onClick={() => toggleTag(tag)}
               className={`inline-block px-4 py-2  rounded-full text-sm m-1 font-medium border transition-all ease-in-out duration-300 ${
                 selectedTags.includes(tag)
-                  ? "bg-blue-200 text-black border-blue-600 scale-110 mx-2"
-                  : "bg-white text-gray-600 border-gray-300 hover:bg-blue-100 hover:scale-105"
+                  ? "bg-gradient-to-r from-blue-200 to-sky-100 text-black scale-110 mx-2"
+                  : "bg-white text-gray-600 border-gray-300 hover:bg-gradient-to-r from-sky-100 to-blue-50 hover:scale-105"
               }`}>
               {tag}
             </button>

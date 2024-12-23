@@ -56,7 +56,7 @@ const SearchInput = ({
             {" + K"}
           </>
         ) : os === "windows" ? (
-          <>{"Ctrl + K"}</>
+          <div className="font-light">{"Ctrl + K"}</div>
         ) : null}
       </div>
     </>

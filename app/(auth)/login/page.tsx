@@ -14,15 +14,16 @@ const Login = () => {
           />
         </aside>
         <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
-          <div className="max-w-xl lg:max-w-3xl">
+          <div className="w-full">
             <h1 className="mt-6 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
-              Login
+              Login to your Account
             </h1>
             <div className="mt-4 leading-relaxed text-gray-500">
               Already have an account?{" "}
               <Link
                 className="text-blue-600 hover:text-blue-800"
-                href={"/signup"}>
+                href={"/signup"}
+              >
                 Sign Up
               </Link>
             </div>
@@ -36,7 +37,7 @@ const Login = () => {
               <hr className="w-full bg-gray-400  " />
             </div>
 
-            <button className="max-sm:w-full focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center ">
+            <button className="w-full focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center mb-4">
               <img
                 className="w-6 h-6"
                 src="https://www.svgrepo.com/show/475656/google-color.svg"
@@ -45,6 +46,17 @@ const Login = () => {
               />
               <p className="text-base font-medium ml-4 text-gray-700">
                 Continue with Google
+              </p>
+            </button>
+            <button className="w-full focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center ">
+              <img
+                className="w-6 h-6"
+                src="https://www.svgrepo.com/show/475661/linkedin-color.svg"
+                loading="lazy"
+                alt="linked logo"
+              />
+              <p className="text-base font-medium ml-4 text-gray-700">
+                Continue with LinkedIn
               </p>
             </button>
           </div>

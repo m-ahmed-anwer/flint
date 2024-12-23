@@ -51,7 +51,7 @@ const Navbar = async () => {
                 Login
               </Link>
               <Link
-                href={"/login"}
+                href={"/signup"}
                 className="bg-black text-white button shadow-md"
                 type="submit">
                 Signup

@@ -1,9 +1,9 @@
 "use server";
-
 import { User } from "../../models/User";
 import { createSession, encrypt } from "@/lib/session";
 import connectToDatabase from "../mogoose";
-import { signUpSchema, type SignUpFormType } from "@/lib/validation/auth";
+import { signUpSchema } from "@/lib/validation/auth";
+import { redirect } from "next/navigation";
 
 export async function handleSignUp(prevState: any, formData: FormData) {
   // Extract the form data
@@ -57,6 +57,7 @@ export async function handleSignUp(prevState: any, formData: FormData) {
 
     // Create a session
     await createSession(user._id.toString());
+    redirect("/");
 
     return {
       status: "success",

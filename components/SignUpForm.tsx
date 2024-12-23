@@ -3,7 +3,7 @@
 import { signUpSchema, type SignUpFormType } from "@/lib/validation/auth";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useActionState, useEffect } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
 import { handleSignUp } from "@/lib/actions/auth";
@@ -20,6 +20,11 @@ const SignUpForm = () => {
     handleSignUp,
     initialState
   );
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
+  };
 
   return (
     <form action={formAction} className="mt-8 grid grid-cols-6 gap-6">
@@ -71,13 +76,19 @@ const SignUpForm = () => {
         )}
       </div>
 
-      <div className="col-span-6 sm:col-span-3">
+      <div className="col-span-6 sm:col-span-3 relative">
         <Input
-          type="password"
+          type={showPassword ? "text" : "password"}
           name="password"
           placeholder="Password"
           className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
         />
+        <button
+          type="button"
+          onClick={togglePasswordVisibility}
+          className="absolute right-2 top-[7px] text-gray-500 text-xl">
+          {showPassword ? "🙈" : "👁️"}
+        </button>
         {state?.errors?.password && (
           <div className="text-sm text-red-500">
             <p>Password must:</p>
@@ -90,13 +101,14 @@ const SignUpForm = () => {
         )}
       </div>
 
-      <div className="col-span-6 sm:col-span-3">
+      <div className="col-span-6 sm:col-span-3 relative">
         <Input
-          type="password"
+          type={showPassword ? "text" : "password"}
           name="confirmPassword"
           placeholder="Confirm Password"
           className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
         />
+
         {state?.errors?.confirmPassword && (
           <p className="text-red-500 text-sm">
             {state.errors.confirmPassword[0]}

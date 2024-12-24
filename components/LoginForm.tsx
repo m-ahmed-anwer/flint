@@ -1,33 +1,47 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useActionState, useState } from "react";
 import { Button } from "./ui/button";
+import { login } from "@/actions/login";
+
+const initialState = {
+  errors: {},
+  message: "",
+};
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [password, setPassword] = useState("");
+  const [state, action, pending] = useActionState(login, initialState);
 
   const togglePassword = () => {
     setShowPassword(!showPassword);
   };
 
   return (
-    <form>
+    <form action={action}>
       <div className="mt-6">
         <div className="space-y-4">
-          <input
-            type="email"
-            placeholder="Enter Email"
-            className="border rounded-lg p-2 w-full"
-          />
+          <div>
+            <input
+              name="email"
+              type="email"
+              placeholder="Enter Email"
+              className="border rounded-lg p-2 w-full mb-1"
+            />
+            {state?.errors?.email && (
+              <p className="text-red-600">{state.errors.email}</p>
+            )}
+          </div>
           <div className="relative">
             <input
+              name="password"
               type={showPassword ? "text" : "password"}
               placeholder="Enter Password"
-              className="border rounded-lg p-2 w-full"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              className="border rounded-lg p-2 w-full mb-1 "
             />
+            {state?.errors?.email && (
+              <p className="text-red-600">{state.errors.password}</p>
+            )}
             <button
               type="button"
               onClick={togglePassword}
@@ -36,7 +50,9 @@ const LoginForm = () => {
               {showPassword ? "🙈" : "👁️"}
             </button>
           </div>
-          <Button className="w-full">Login</Button>
+          <Button disabled={pending} className="w-full">
+            {pending ? "Submiting" : "Login"}
+          </Button>
         </div>
       </div>
     </form>

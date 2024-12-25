@@ -60,7 +60,7 @@ export async function getSession() {
 
   const session = await decrypt(sessionToken);
   if (!session || session.expires < Date.now()) {
-    await deleteSession(); // Cleanup expired session
+    await deleteSession();
     return null;
   }
 
@@ -69,11 +69,16 @@ export async function getSession() {
 
 export async function updateSession(request: NextRequest) {
   const sessionToken = request.cookies.get(cookie.name)?.value;
-  if (!sessionToken) return;
+
+  if (!sessionToken) {
+    return NextResponse.next();
+  }
 
   const session = await decrypt(sessionToken);
   if (!session || session.expires < Date.now()) {
-    return deleteSession();
+    const response = NextResponse.next();
+    response.cookies.set(cookie.name, "", { expires: new Date(0) });
+    return response;
   }
 
   session.expires = Date.now() + cookie.duration;

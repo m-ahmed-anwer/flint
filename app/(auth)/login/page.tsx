@@ -5,28 +5,27 @@ import React from "react";
 const Login = () => {
   return (
     <section className="bg-white relative">
-      <div className="lg:grid lg:min-h-screen lg:grid-cols-12 leading-4 tracking-normal ">
-        <aside className="relative block h-16 lg:order-first lg:col-span-5 lg:h-full xl:col-span-6 lg:w-4/5 ">
+      <div className="lg:grid lg:min-h-screen lg:grid-cols-12 leading-4 tracking-normal">
+        <aside className="relative block h-16 lg:order-first lg:col-span-5 lg:h-full xl:col-span-6 lg:w-4/5">
           <img
             alt="Pattern"
             src="https://images.unsplash.com/photo-1605106702734-205df224ecce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
             className="absolute inset-0 h-full w-full object-cover"
           />
         </aside>
-        <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
-          <div className="max-w-xl lg:max-w-3xl">
+        <main className="flex items-center  px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
+          <div className="max-w-xl lg:max-w-3xl w-full">
             <h1 className="mt-6 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
               Login
             </h1>
             <div className="mt-4 leading-relaxed text-gray-500">
-              Already have an account?{" "}
+              Don't have an account?{" "}
               <Link
                 className="text-blue-600 hover:text-blue-800"
                 href={"/signup"}>
-                Sign Up
+                Signup
               </Link>
             </div>
-
             <LoginForm />
             <div className="w-full flex items-center justify-between my-10 sm:my-8">
               <hr className="w-full bg-gray-400" />

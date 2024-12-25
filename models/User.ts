@@ -1,8 +1,8 @@
 // models/User.ts
-import mongoose from "mongoose";
+import mongoose, { connect } from "mongoose";
 import bcrypt from "bcryptjs";
 
-mongoose.connect(process.env.MONGODB_URI!);
+connect(process.env.MONGODB_URI!);
 mongoose.Promise = global.Promise;
 
 const UserSchema = new mongoose.Schema(

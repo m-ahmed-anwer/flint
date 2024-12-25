@@ -42,15 +42,17 @@ const Navbar = async () => {
 
         <div className="flex items-center gap-5 text-black">
           {session ? (
-            <form
-              action={async () => {
-                "use server";
-                await deleteSession();
-              }}>
-              <button type="submit">Logout</button>
-            </form>
+            <>
+              <form
+                action={async () => {
+                  "use server";
+                  await deleteSession();
+                }}>
+                <button type="submit">Logout</button>
+              </form>
+              <AvatarDropDownMenu />
+            </>
           ) : (
-            // <AvatarDropDownMenu />
             <div className="flex gap-5">
               <Link
                 href={"/login"}

@@ -9,8 +9,9 @@ import { IoHelp, IoSettingsOutline } from "react-icons/io5";
 import { BsCurrencyDollar } from "react-icons/bs";
 import { PiSignOut } from "react-icons/pi";
 import Link from "next/link";
+import { getSession } from "@/lib/session";
 
-const AvatarDropDownMenu = () => {
+const AvatarDropDownMenu = async () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

@@ -1,7 +1,9 @@
+// @lib/actions/auth.ts
 "use server";
 import { User } from "../../models/User";
 import { createSession } from "@/lib/session";
 import { loginSchema, signUpSchema } from "@/lib/validation/auth";
+import bcrypt from "bcryptjs";
 import { redirect } from "next/navigation";
 
 export async function handleSignUp(prevState: any, formData: FormData) {
@@ -20,6 +22,7 @@ export async function handleSignUp(prevState: any, formData: FormData) {
 
   if (!result.success) {
     return {
+      status: "error",
       errors: result.error.flatten().fieldErrors,
       message: "Invalid form data",
     };
@@ -32,6 +35,7 @@ export async function handleSignUp(prevState: any, formData: FormData) {
     });
     if (existingUser) {
       return {
+        status: "error",
         message: "Email already exists",
         errors: {
           email: ["This email is already registered"],
@@ -78,14 +82,53 @@ export async function handleLogin(prevState: any, formData: FormData) {
 
   if (!result.success) {
     return {
-      errors: result.error.flatten().fieldErrors,
-      message: "Invalid form data",
       status: "error",
+      message: "Invalid form data",
+      errors: result.error.flatten().fieldErrors,
     };
   }
 
-  return {
-    status: "success",
-    message: "Account created successfully!",
-  };
+  try {
+    // Check if the email exists in the database
+    const user = await User.findOne({ email: rawFormData.email });
+
+    if (!user) {
+      return {
+        status: "error",
+        message: "Email not found",
+        errors: {
+          email: ["Email not found"],
+        },
+      };
+    }
+
+    // Check if the password is correct
+    const isMatch = await bcrypt.compare(
+      rawFormData.password as string,
+      user.password
+    );
+
+    if (!isMatch) {
+      return {
+        status: "error",
+        message: "Invalid password", // Generalized message for better security
+        errors: {
+          password: ["Invalid password"],
+        },
+      };
+    }
+
+    // Create a session
+    await createSession(user._id.toString());
+
+    return {
+      status: "success",
+      message: "Logged in successfully",
+    };
+  } catch (error) {
+    return {
+      status: "error",
+      message: error instanceof Error ? error.message : "Something went wrong",
+    };
+  }
 }

@@ -1,16 +1,16 @@
 "use client";
 
-import { signUpSchema, type SignUpFormType } from "@/lib/validation/auth";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useActionState, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useActionState, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { handleSignUp } from "@/lib/actions/auth";
 
 const initialState = {
   errors: {},
   message: "",
+  status: "",
 };
 
 const SignUpForm = () => {
@@ -86,7 +86,7 @@ const SignUpForm = () => {
         <button
           type="button"
           onClick={togglePasswordVisibility}
-          className="absolute right-2 top-[7px] text-gray-500 text-xl">
+          className="absolute right-2 top-[10px] text-gray-500 text-xl">
           {showPassword ? "🙈" : "👁️"}
         </button>
         {state?.errors?.password && (
@@ -118,7 +118,7 @@ const SignUpForm = () => {
 
       <div className="col-span-6">
         <Button
-          aria-disabled={pending}
+          disabled={pending}
           type="submit"
           className="w-full h-12 text-lg">
           {pending ? "Loading..." : "Sign Up"}

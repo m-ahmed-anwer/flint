@@ -2,9 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import HamburgerMenu from "./HamburgerMenu";
 import AvatarDropDownMenu from "./AvatarDropDownMenu";
+import { deleteSession, getSession } from "@/lib/session";
 
 const Navbar = async () => {
-  const user = false;
+  const session = await getSession();
 
   return (
     <header className="header-container">
@@ -40,9 +41,16 @@ const Navbar = async () => {
         </div>
 
         <div className="flex items-center gap-5 text-black">
-          {user ? (
-            <AvatarDropDownMenu />
+          {session ? (
+            <form
+              action={async () => {
+                "use server";
+                await deleteSession();
+              }}>
+              <button type="submit">Logout</button>
+            </form>
           ) : (
+            // <AvatarDropDownMenu />
             <div className="flex gap-5">
               <Link
                 href={"/login"}

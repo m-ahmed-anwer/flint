@@ -1,8 +1,8 @@
 "use server";
 import { User } from "../../models/User";
-import { createSession, encrypt } from "@/lib/session";
+import { createSession } from "@/lib/session";
 import connectToDatabase from "../mogoose";
-import { signUpSchema } from "@/lib/validation/auth";
+import { loginSchema, signUpSchema } from "@/lib/validation/auth";
 import { redirect } from "next/navigation";
 
 export async function handleSignUp(prevState: any, formData: FormData) {
@@ -27,9 +27,6 @@ export async function handleSignUp(prevState: any, formData: FormData) {
   }
 
   try {
-    // Connect to the database
-    await connectToDatabase();
-
     // Check if the email already exists in the database
     const existingUser = await User.findOne({
       email: rawFormData.email,
@@ -57,7 +54,6 @@ export async function handleSignUp(prevState: any, formData: FormData) {
 
     // Create a session
     await createSession(user._id.toString());
-    redirect("/");
 
     return {
       status: "success",
@@ -69,4 +65,28 @@ export async function handleSignUp(prevState: any, formData: FormData) {
       message: error instanceof Error ? error.message : "Something went wrong",
     };
   }
+}
+
+export async function handleLogin(prevState: any, formData: FormData) {
+  // Extract the form data
+  const rawFormData = {
+    email: formData.get("email"),
+    password: formData.get("password"),
+  };
+
+  // Validate the form data
+  const result = loginSchema.safeParse(rawFormData);
+
+  if (!result.success) {
+    return {
+      errors: result.error.flatten().fieldErrors,
+      message: "Invalid form data",
+      status: "error",
+    };
+  }
+
+  return {
+    status: "success",
+    message: "Account created successfully!",
+  };
 }

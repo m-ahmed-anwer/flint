@@ -1,7 +1,6 @@
 "use server";
 import { User } from "../../models/User";
 import { createSession } from "@/lib/session";
-import connectToDatabase from "../mogoose";
 import { loginSchema, signUpSchema } from "@/lib/validation/auth";
 import { redirect } from "next/navigation";
 

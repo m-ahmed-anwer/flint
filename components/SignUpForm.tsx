@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { useActionState, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { handleSignUp } from "@/lib/actions/auth";
+import { handleSignUp } from "@/lib/actions/auth-actions";
 
 const initialState = {
   errors: {},

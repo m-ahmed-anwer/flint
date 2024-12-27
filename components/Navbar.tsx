@@ -2,10 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import HamburgerMenu from "./HamburgerMenu";
 import AvatarDropDownMenu from "./AvatarDropDownMenu";
-import { deleteSession, getSession } from "@/lib/session";
+import { auth, signOut } from "@/auth";
 
 const Navbar = async () => {
-  const session = await getSession();
+  const session = await auth();
 
   return (
     <header className="header-container">
@@ -46,7 +46,7 @@ const Navbar = async () => {
               <form
                 action={async () => {
                   "use server";
-                  await deleteSession();
+                  await signOut();
                 }}>
                 <button type="submit">Logout</button>
               </form>

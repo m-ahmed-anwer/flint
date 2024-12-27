@@ -1,3 +1,4 @@
+import { signIn } from "@/auth";
 import SignUpForm from "@/components/SignUpForm";
 import Link from "next/link";
 import React from "react";
@@ -37,8 +38,13 @@ const Signup = () => {
               <hr className="w-full bg-gray-400" />
             </div>
 
-            <div className="flex flex-col gap-4">
-              <button className="max-sm:w-full focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center">
+            <form
+              className="flex flex-col gap-4"
+              action={async () => {
+                "use server";
+                await signIn("google", { redirectTo: "/" });
+              }}>
+              <button className="w-full py-3.5 px-4 border rounded-full border-gray-700 flex items-center justify-center text-center">
                 <img
                   className="w-6 h-6"
                   src="https://www.svgrepo.com/show/475656/google-color.svg"
@@ -49,18 +55,7 @@ const Signup = () => {
                   Continue with Google
                 </p>
               </button>
-              <button className="max-sm:w-full focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center">
-                <img
-                  className="w-6 h-6"
-                  src="https://www.svgrepo.com/show/475656/linkedin.svg"
-                  loading="lazy"
-                  alt="LinkedIn logo"
-                />
-                <p className="text-base font-medium ml-4 text-gray-700">
-                  Continue with LinkedIn
-                </p>
-              </button>
-            </div>
+            </form>
           </div>
         </main>
       </div>

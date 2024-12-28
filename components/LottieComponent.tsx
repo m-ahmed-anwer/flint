@@ -11,7 +11,7 @@ const LottieComponent = ({
   height?: number;
 }) => {
   const handleError = () => {
-    throw new Error("Lottie file not found");
+    console.log("Error loading Lottie file");
   };
 
   return (

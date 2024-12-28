@@ -1,4 +1,4 @@
-import NextAuth from "next-auth";
+import NextAuth, { CredentialsSignin } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
@@ -17,10 +17,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     CredentialsProvider({
       name: "Credentials",
-
       credentials: {
-        email: { label: "Username", type: "text", placeholder: "jsmith" },
-        password: { label: "Password", type: "password" },
+        email: {},
+        password: {},
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
@@ -38,6 +37,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           credentials.password as string,
           existingUser.password
         );
+
         if (!valid) {
           return null;
         }
@@ -77,11 +77,5 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       }
       return session;
     },
-    // async signIn({ account, profile }) {
-    //   if (account.provider === "google") {
-    //     return profile.email_verified && profile.email.endsWith("@example.com");
-    //   }
-    //   return true; // Do different verification for other providers that don't have `email_verified`
-    // },
   },
 });

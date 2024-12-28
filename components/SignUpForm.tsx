@@ -3,9 +3,9 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { useActionState, useState } from "react";
-import { useToast } from "@/hooks/use-toast";
+import { useActionState, useEffect, useState } from "react";
 import { handleSignUp } from "@/lib/actions/auth-actions";
+import { toast } from "react-hot-toast";
 
 const initialState = {
   errors: {},
@@ -15,7 +15,6 @@ const initialState = {
 
 const SignUpForm = () => {
   const router = useRouter();
-  const { toast } = useToast();
   const [state, formAction, pending] = useActionState(
     handleSignUp,
     initialState
@@ -25,6 +24,15 @@ const SignUpForm = () => {
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
   };
+
+  useEffect(() => {
+    if (state.status === "error" && state.message) {
+      toast.error(state.message); // Show an error toast with the message
+    } else if (state.status === "success" && state.message) {
+      toast.success(state.message);
+      // router.push("/login");
+    }
+  }, [state.status, state.message]);
 
   return (
     <form action={formAction} className="mt-8 grid grid-cols-6 gap-6">
@@ -81,6 +89,7 @@ const SignUpForm = () => {
           type={showPassword ? "text" : "password"}
           name="password"
           placeholder="Password"
+          autoComplete="current-password"
           className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
         />
         <button
@@ -106,6 +115,7 @@ const SignUpForm = () => {
           type={showPassword ? "text" : "password"}
           name="confirmPassword"
           placeholder="Confirm Password"
+          autoComplete="current-password"
           className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
         />
 

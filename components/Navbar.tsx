@@ -3,6 +3,7 @@ import Link from "next/link";
 import HamburgerMenu from "./HamburgerMenu";
 import AvatarDropDownMenu from "./AvatarDropDownMenu";
 import { auth, signOut } from "@/auth";
+import LogoutButton from "./LogoutButton";
 
 const Navbar = async () => {
   const session = await auth();
@@ -43,13 +44,7 @@ const Navbar = async () => {
         <div className="flex items-center gap-5 text-black">
           {session ? (
             <>
-              <form
-                action={async () => {
-                  "use server";
-                  await signOut();
-                }}>
-                <button type="submit">Logout</button>
-              </form>
+              <LogoutButton />
               <AvatarDropDownMenu />
             </>
           ) : (

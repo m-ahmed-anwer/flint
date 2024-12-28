@@ -1,10 +1,9 @@
 // @lib/actions/auth-actions.ts
-
 "use server";
+
 import { signIn } from "@/auth";
 import { loginSchema, signUpSchema } from "@/lib/validation/auth";
-import axios from "axios";
-import { headers } from "next/headers";
+import { AuthError, CredentialsSignin } from "next-auth";
 import { redirect } from "next/navigation";
 
 export async function handleSignUp(prevState: any, formData: FormData) {
@@ -29,24 +28,27 @@ export async function handleSignUp(prevState: any, formData: FormData) {
     };
   }
 
-  try {
-    const response = await fetch(`http://localhost:3000/api/user/signup`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: rawFormData.email,
-        password: rawFormData.password,
-        firstName: rawFormData.firstName,
-        lastName: rawFormData.lastName,
-        phone: rawFormData.phone,
-      }),
-    });
-  } catch (error) {
+  const response = await fetch(`http://localhost:3000/api/user/signup`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: rawFormData.email,
+      password: rawFormData.password,
+      firstName: rawFormData.firstName,
+      lastName: rawFormData.lastName,
+      phone: rawFormData.phone,
+    }),
+  });
+
+  if (response.ok) {
+    redirect("/login");
+  } else {
+    const data = await response.json();
     return {
       status: "error",
-      message: error instanceof Error ? error.message : "Something went wrong",
+      message: data.message,
     };
   }
 }
@@ -66,23 +68,14 @@ export async function handleLogin(prevState: any, formData: FormData) {
       status: "error",
       message: "Invalid form data",
       errors: result.error.flatten().fieldErrors,
+      loginError: false,
     };
   }
-  const loginData = await signIn("credentials", {
+
+  await signIn("credentials", {
     email: rawFormData.email,
     password: rawFormData.password,
-    redirect: false,
+    redirect: true,
+    redirectTo: "/",
   });
-  if (loginData?.error) {
-    return {
-      status: "error",
-      message: loginData.error,
-    };
-  } else {
-    redirect("/");
-    return {
-      status: "success",
-      message: "Login successful",
-    };
-  }
 }

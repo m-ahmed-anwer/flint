@@ -2,15 +2,26 @@
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useActionState, useState } from "react";
-import { useRouter } from "next/navigation";
-import { useToast } from "@/hooks/use-toast";
+import { useActionState, useEffect, useState } from "react";
+import { redirect, useRouter } from "next/navigation";
 import { handleLogin } from "@/lib/actions/auth-actions";
+import toast from "react-hot-toast";
 
-const initialState = {
+interface ILoginForm {
+  errors: {
+    email?: string[];
+    password?: string[];
+  };
+  message: string;
+  status: string;
+  loginError: boolean;
+}
+
+const initialState: ILoginForm = {
   errors: {},
   message: "",
   status: "",
+  loginError: false,
 };
 
 const LoginForm = () => {
@@ -42,6 +53,7 @@ const LoginForm = () => {
         <Input
           type={showPassword ? "text" : "password"}
           name="password"
+          autoComplete="current-password"
           placeholder="Password"
           className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
         />
@@ -62,6 +74,10 @@ const LoginForm = () => {
           </div>
         )}
       </div>
+
+      {state?.loginError && (
+        <p className="text-red-500 text-sm">{state.message}</p>
+      )}
 
       <div className="col-span-6">
         <Button
